@@ -1,0 +1,160 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Infinity Management</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">List Offres</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+      </li>
+      <li>
+        <a [routerLink]="['/adminLogin']"
+          ><span class="glyphicon glyphicon-log-in"></span> Login</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <form ngNativeValidate #form>
+    <div class="form-group">
+      <label for="Nom">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Nom"
+        name="nom"
+        [(ngModel)]="candidat.nom"
+        placeholder="Votre Nom"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="Prenom">Prenom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Prenom"
+        name="prenom"
+        [(ngModel)]="candidat.prenom"
+        placeholder="Votre Prenom"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="Email">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="Email"
+        name="email"
+        [(ngModel)]="candidat.email"
+        aria-describedby="emailHelp"
+        placeholder="Votre email"
+        required
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="dateNaissance">Date de naissance</label>
+      <input
+        type="date"
+        name="dateNaissance"
+        class="form-control"
+        id="dateNaissance"
+        min="1959-12-31"
+        max="2002-12-31"
+        [(ngModel)]="candidat.dateNaissance"
+      />
+    </div>
+    <div class="form-group">
+      <label for="NumTel">Numero Telephone</label>
+      <input
+        type="number"
+        class="form-control"
+        name="NumTel"
+        id="NumTel"
+        [(ngModel)]="candidat.numTel"
+        placeholder="Votre numéro du telephone"
+        min="20000000"
+        max="99999999"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="Disponibilite">Disponibilité par mois </label>
+      <input
+        type="number"
+        [(ngModel)]="candidat.disponibilite"
+        class="form-control"
+        name="Disponibilite"
+        id="Disponibilite"
+        placeholder="Votre Disponibilité"
+        min="0.0"
+        max="6.0"
+      />
+    </div>
+    <div class="form-group">
+      <label for="Experience"> Années d'expérience </label>
+      <input
+        type="number"
+        [(ngModel)]="candidat.experience"
+        class="form-control"
+        id="Experience"
+        name="Experience"
+        placeholder="Nbr des années d'expérience"
+        min="0"
+        max="50"
+      />
+    </div>
+    <div class="form-group">
+      <label for="CV">Votre cv</label>
+      <input
+        type="file"
+        name="CV"
+        class="form-control-file"
+        id="CV"
+        (change)="selectFile($event)"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="Message">Message</label>
+      <textarea
+        class="form-control"
+        id="Message"
+        [(ngModel)]="candidat.message"
+        name="Message"
+        rows="3"
+      ></textarea>
+    </div>
+    <button
+      type="submit"
+      (click)="form.checkValidity() ? saveCandidat() : null"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+  </form>
+  <div
+    *ngIf="message == 'Candidature déposer veuiller confirmer votre email'"
+    class="alert alert-success"
+    role="alert"
+  >
+    {{ message }}
+  </div>
+  <div
+    *ngIf="message == 'email est déjà utiliser'"
+    class="alert alert-warning"
+    role="alert"
+  >
+    {{ message }}
+  </div>
+</div>

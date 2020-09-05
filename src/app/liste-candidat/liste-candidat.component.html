@@ -1,0 +1,152 @@
+<div class="sidebar">
+  <a
+    class="active"
+    [routerLink]="['/admin/listeCandidat']"
+    routerLinkActive="router-link-active"
+    >Liste</a
+  >
+</div>
+
+<div class="content">
+  <div class="container">
+    <h4>Trier Par</h4>
+    <select [(ngModel)]="choix">
+      <option value="etat">Etat candidature</option>
+      <option value="statut">Statut mail</option>
+      <option value="nom">nom</option>
+      <option value="prenom">prenom</option>
+    </select>
+
+    <select [(ngModel)]="etat" *ngIf="choix == 'etat'">
+      <option value="Nouvelle">Nouvelle</option>
+      <option value="Confirmer">Confirmer</option>
+      <option value="EnCours">En Cours</option>
+      <option value="Rejeter">Rejeter</option>
+    </select>
+    <select [(ngModel)]="statut" *ngIf="choix == 'statut'">
+      <option value="NonConfirme">Non Confirmer</option>
+      <option value="Confirme">Confirmer</option>
+    </select>
+    <input
+      type="text"
+      class="form-control"
+      id="Prenom"
+      name="prenom"
+      *ngIf="choix == 'prenom'"
+      [(ngModel)]="prenom"
+      placeholder=" Prenom"
+      required
+    />
+    <input
+      type="text"
+      class="form-control"
+      id="nom"
+      name="nom"
+      *ngIf="choix == 'nom'"
+      [(ngModel)]="nom"
+      placeholder=" nom"
+      required
+    />
+    <button class="btn btn-success" type="submit" (click)="recherche()">
+      Recherche
+    </button>
+  </div>
+  <table class="table table-striped" style="margin-top: 50px">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Num tel</th>
+        <th scope="col">Statut mail</th>
+        <th scope="col">Etat de candidature</th>
+        <th>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="nouvelleCandidature()"
+          >
+            Nouvelle Candidature
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidat of candidats">
+        <td>{{ candidat.nom }}</td>
+        <td>{{ candidat.prenom }}</td>
+        <td>{{ candidat.NumTel }}</td>
+        <td>
+          <button
+            type="button"
+            *ngIf="candidat.statue == 'NonConfirme'"
+            class="btn btn-warning"
+            disabled
+          >
+            Non confirmer
+          </button>
+          <button
+            type="button"
+            *ngIf="candidat.statue == 'Confirme'"
+            class="btn btn-success"
+            disabled
+          >
+            Confirmer
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            *ngIf="candidat.etat == 'Nouvelle'"
+            class="btn btn-primary"
+            disabled
+          >
+            Nouvelle
+          </button>
+          <button
+            type="button"
+            *ngIf="candidat.etat == 'Confirmer'"
+            class="btn btn-success"
+            disabled
+          >
+            Confirmer
+          </button>
+          <button
+            type="button"
+            *ngIf="candidat.etat == 'Encours'"
+            class="btn btn-warning"
+            disabled
+          >
+            En cours
+          </button>
+          <button
+            type="button"
+            *ngIf="candidat.etat == 'Rejeter'"
+            class="btn btn-danger"
+            disabled
+          >
+            Rejeter
+          </button>
+        </td>
+        <td>
+          <button
+            type="submit"
+            (click)="Detail(candidat.id)"
+            class="btn btn-primary"
+          >
+            <span class="fa fa-eye"></span>
+            Detail
+          </button>
+
+          <button
+            type="submit"
+            (click)="modifier(candidat.id)"
+            class="btn btn-warning"
+          >
+            <span class="fa fa-pen"></span>
+            Modifer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

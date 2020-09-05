@@ -1,0 +1,111 @@
+<div class="sidebar">
+  <a
+    class="active"
+    [routerLink]="['/admin/listeCandidat']"
+    routerLinkActive="router-link-active"
+    >Liste</a
+  >
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+      <div class="well profile">
+        <div class="col-sm-12">
+          <div class="col-xs-12 col-sm-12">
+            <h2>{{ currentCandidat.nom }} {{ currentCandidat.prenom }}</h2>
+            <p><strong>Email: </strong> {{ currentCandidat.email }}</p>
+            <p>
+              <strong>Date de naissance: </strong>
+              {{ currentCandidat.dateNaissance }}
+            </p>
+            <p>
+              <strong>Numéro telephone: </strong>
+              {{ currentCandidat.NumTel }}
+            </p>
+          </div>
+          <p>
+            <strong>Disponibilité: </strong> {{ currentCandidat.disponibilite }}
+          </p>
+          <p>
+            <strong>Nb années d'expérience: </strong>
+            {{ currentCandidat.experience }}
+          </p>
+          <p>
+            <strong>CV: </strong>
+
+            <a href="../../assets/{{ currentCandidat.CV }}"> CV</a>
+          </p>
+          <p><strong>Message: </strong> {{ currentCandidat.message }}</p>
+          <p>
+            <strong>Etat: </strong>
+            <button
+              type="button"
+              *ngIf="currentCandidat.etat == 'Nouvelle'"
+              class="btn btn-primary"
+              disabled
+            >
+              Nouvelle
+            </button>
+            <button
+              type="button"
+              *ngIf="currentCandidat.etat == 'Confirmer'"
+              class="btn btn-success"
+              disabled
+            >
+              Confirmer
+            </button>
+            <button
+              type="button"
+              *ngIf="currentCandidat.etat == 'Encours'"
+              class="btn btn-warning"
+              disabled
+            >
+              En cours
+            </button>
+            <button
+              type="button"
+              *ngIf="currentCandidat.etat == 'Rejeter'"
+              class="btn btn-danger"
+              disabled
+            >
+              Rejeter
+            </button>
+          </p>
+        </div>
+        <div class="col-xs-12 divider text-center">
+          <div class="col-xs-12 col-sm-4 emphasis">
+            <button
+              class="btn btn-success btn-success"
+              type="submit"
+              (click)="confirm()"
+            >
+              <span class="fa fa-check-circle"></span> Confirmer
+            </button>
+          </div>
+          <div class="col-xs-12 col-sm-4 emphasis">
+            <button
+              class="btn btn-info btn-warning"
+              type="submit"
+              (click)="Encours()"
+            >
+              <span class="fa fa-user"></span> En cours
+            </button>
+          </div>
+          <div class="col-xs-12 col-sm-4 emphasis">
+            <div class="btn-group dropup btn-block">
+              <button
+                type="button"
+                class="btn btn-danger"
+                type="submit"
+                (click)="Rejeter()"
+              >
+                <span class="fa fa-times-circle"></span> Rejeter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

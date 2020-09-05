@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Infinity Management</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">List Offres</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+      </li>
+      <li>
+        <a [routerLink]="['/adminLogin']" routerLinkActive="router-link-active"
+          ><span class="glyphicon glyphicon-log-in"></span> Login</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="well">
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">Receta 1</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra
+          varius quam sit amet vulputate. Quisque mauris augue, molestie
+          tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+          dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis.
+          Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
+        </p>
+        <ul class="list-inline list-unstyled">
+          <button type="button" class="btn btn-primary" (click)="Postuler()">
+            Postuler
+          </button>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
